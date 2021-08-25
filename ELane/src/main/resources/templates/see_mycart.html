@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function()
+        {
+        $("#notificationLink").click(function()
+        {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+        });
+
+        //Document Click
+        $(document).click(function()
+        {
+        $("#notificationContainer").hide();
+        });
+        //Popup Click
+        $("#notificationContainer").click(function()
+        {
+        e.stopPropagation();
+        });
+
+        });
+    </script>
+
+    <link  th:href="@{/ul.css}" rel="stylesheet" type="text/css" href="ul.css"/>
+    <link  th:href="@{/input.css}" rel="stylesheet" type="text/css" href="input.css"/>
+    <link  th:href="@{/button.css}" rel="stylesheet" type="text/css" href="button.css"/>
+    <link  th:href="@{/font.css}" rel="stylesheet" type="text/css" href="font.css"/>
+
+    <style>
+        table {
+        border-collapse: collapse;
+        width: 60%;
+        }
+
+        th, td {
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+        background-color: #4CAF50;
+        color: white;
+        }
+        .table1 {
+        border-collapse: collapse;
+        width: 70%;
+        }
+
+        th, td {
+        text-align: left;
+        padding: 8px;
+        }
+        tr:nth-child(odd){background-color: #f2f2f2}
+        tr:nth-child(even){background-color: white}
+
+        th {
+        background-color: #4CAF50;
+        color: white;
+        }
+    </style>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<body>
+<div class="w3-container w3-black">
+<ul >
+
+    <li><a href="/demo/Home" class="w3-bar-item w3-button w3-green w3-xlarge"><i class="fa fa-home"></i></a></li>
+    <span th:if="${USERTYPE} == customer"  >
+        <li><a href="#" >Order</a></li>
+    </span>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="#" >Order</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <span th:if="${USERTYPE} == producer"  >
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addProduct">Add new arriivals</a>
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">All Category</a>
+        <div class="dropdown-content">
+            <a href="/demo/cloths">cloths</a>
+            <a href="/demo/craft">craft</a>
+            <a href="/demo/food">food</a>
+        </div>
+    </li>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="/demo/addCategory" >Add Category</a></li>
+    </span>
+    <li><a href="/demo/see_mycart" >my cart</a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-globe"></i></a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-envelope"></i></a></li>
+
+    <span th:if="${USERTYPE} != null">
+        <li>
+            <div id="notification_count">3</div>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtnB">Dropdown</button>
+                <div id="myDropdown" class="dropdownB-content" >
+                    <a href="#home">Home boy girl yo yoy o</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <form method="post" action="#">
+                        <input type="submit" value="paad kha"  name="productid" />
+                        <button  type="submit" value="Create"/>
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li class="right"><a href="/demo/logout">Log Out</a></li>
+    </span>
+    <span th:if="${USERTYPE} == null">
+
+        <li  class="dropdown " >
+            <a href="javascript:void(0)" class="dropbtn">Sign up</a>
+            <div class="dropdown-content">
+                <a href="/demo/signup">as customer</a>
+                <a href="/demo/signup_for_producer">as producer</a>
+
+            </div>
+
+        </li>
+        <li class="right"><a href="/demo/login">Login</a></li>
+    </span>
+    <li1><a href="/demo/myprofile" class="w3-bar-item w3-button w3-green w3-right  w3-xlarge"><span class="sansserif" th:text="${USERNAME}"/></a></li1>
+</ul>
+</div>
+<div align="center" style="vertical-align:bottom">
+    <table>
+        <tr>
+            <th><img  th:src="@{/icon_cart.png}"  width="40" height="40" alt="My Pic" /></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+        <span th:if="${mycart.isEmpty()==true}">
+            <p class="sansserif"><b>Your cart is empty...SHOP now!!!!</b></p>
+        </span>
+        </tr>
+    <span th:if="${mycart.isEmpty()!=true}">
+    <span class="middle"  th:each="cart : ${mycart}">
+        <form method="post" action="/demo/removeFromBag">
+            <tr>
+                <td><span class="sansserif"><img  th:src="@{${cart.imagename}}"  width="128" height="128" alt="My Pic" /></span></td>
+                <td>
+                    <p class="sansserif"><b>Product Name: </b><span th:text="${cart.productname}"/></p>
+                    <p class="sansserif"><b>Price: </b><span th:text="${cart.price}" /></p>
+                    <p class="sansserif"><b>Amount:</b> <span th:text="${cart.amount}" /></p>
+                </td>
+                <td>
+                    <div th:if="${mycart.isEmpty()==true}">
+                        <p class="sansserif"><b>Your cart is empty...SHOP now!!!!</b></p>
+                    </div>
+                    <span th:if="${mycart.isEmpty()==false}">
+                    <form method="post" action="/demo/removeFromBag">
+                        <button class="button button1" id="remove" name="button1" type="submit" value="Remove">Remove</button>
+                       <input th:value="${cart.productid}" type="hidden" name="productid" />
+                    </form>
+                    </span>
+                    <div th:if="${mycart.isEmpty()==true}">
+                        <p class="sansserif"><b>Your cart is empty...SHOP now!!!!</b></p>
+                    </div>
+                </td>
+            </tr>
+        </form>
+    </span>
+        <tr>
+            <form method="post" action="/demo/submit_cart">
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="radio" name="payment_type" value="pay_on_delivery"/>Pay on delivery
+                        <input type="radio" name="payment_type" value="BKash"/>BKash
+                        <button class="button button1" id="submit" name="button1" type="submit" value="Confirm">Confirm</button>
+                    </td>
+            </form>
+        </tr>
+    </span>
+    </table>
+</div>
+
+<span th:if="${submit}==submitted">
+    <script type="text/javascript">
+        alert("Your order has been sent :)");
+    </script>
+</span>
+<span th:if="${remove}==removed">
+    <script type="text/javascript">
+        alert("product has been removed :)");
+    </script>
+</span>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+
+</script>
+
+</body>
+
+</html>
+

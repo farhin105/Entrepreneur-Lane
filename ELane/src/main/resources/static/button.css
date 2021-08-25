@@ -1,0 +1,74 @@
+
+        .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding:8px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: none;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        }
+
+        .button1 {
+        background-color: white;
+        button-align: right;
+        color: black;
+        border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+        background-color: #4CAF50;
+        color: white;
+        }
+        .button2 {
+        background-color: transparent;
+        color: black;
+        border: none;
+        }
+
+        .button2:hover {
+        background-color: grey;
+        color: white;
+        }
+        .button3 {
+                background-color: transparent;
+                button-align: right;
+                color: black;
+                border: none; //2px solid #4CAF50;
+                padding:4px 10px;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                width:490px;
+                margin:none;
+                }
+        .button3:hover {
+                background-color: grey;//#4CAF50;
+                color: white;
+                }
+        .buttonNoti {
+        background-color: black;
+        border: none;
+        color: white;
+        padding:8px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: ;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        }
+        .buttonNoti:hover {
+        background-color:  #f1f1f1;
+        color: white;
+        }
+
+

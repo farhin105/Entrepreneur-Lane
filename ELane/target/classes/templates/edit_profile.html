@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<import resource="classpath:config/spring/that-other-xml-conf.xml"/>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function()
+        {
+        $("#notificationLink").click(function()
+        {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+        });
+
+        //Document Click
+        $(document).click(function()
+        {
+        $("#notificationContainer").hide();
+        });
+        //Popup Click
+        $("#notificationContainer").click(function()
+        {
+        e.stopPropagation();
+        });
+
+        });
+    </script>
+
+    <link  th:href="@{/ul.css}" rel="stylesheet" type="text/css" href="ul.css"/>
+    <link  th:href="@{/input.css}" rel="stylesheet" type="text/css" href="input.css"/>
+    <link  th:href="@{/button.css}" rel="stylesheet" type="text/css" href="button.css"/>
+    <link  th:href="@{/font.css}" rel="stylesheet" type="text/css" href="font.css"/>
+
+    <style>
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=password], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+        background-color: #45a049;
+        }
+
+        div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        }
+    </style>
+
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<body>
+<div class="w3-container w3-black">
+<ul >
+
+    <li><a href="/demo/Home" class="w3-bar-item w3-button w3-green w3-xlarge"><i class="fa fa-home"></i></a></li>
+    <span th:if="${USERTYPE} == customer"  >
+        <li><a href="#" >Order</a></li>
+    </span>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="#" >Order</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <span th:if="${USERTYPE} == producer"  >
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addProduct">Add new arriivals</a>
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">All Category</a>
+        <div class="dropdown-content">
+            <a href="/demo/cloths">cloths</a>
+            <a href="/demo/craft">craft</a>
+            <a href="/demo/food">food</a>
+        </div>
+    </li>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="/demo/addCategory" >Add Category</a></li>
+    </span>
+    <li><a href="/demo/see_mycart" >my cart</a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-globe"></i></a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-envelope"></i></a></li>
+    <span th:if="${USERTYPE} != null">
+        <li class="right"><a href="/demo/logout">Log Out</a></li>
+    </span>
+    <span th:if="${USERTYPE} == null">
+
+        <li  class="dropdown " >
+            <a href="javascript:void(0)" class="dropbtn">Sign up</a>
+            <div class="dropdown-content">
+                <a href="/demo/signup">as customer</a>
+                <a href="/demo/signup_for_producer">as producer</a>
+
+            </div>
+
+        </li>
+        <li class="right"><a href="/demo/login">Login</a></li>
+    </span>
+    <li1><a href="/demo/myprofile" class="w3-bar-item w3-button w3-green w3-right  w3-xlarge"><span class="sansserif" th:text="${USERNAME}"/></a></li1>
+</ul>
+</div>
+<form method="post" action="/demo/edited">
+    <div align="center" style="vertical-align:bottom">
+        <table>
+            <tr><p class="sansserif"><b>PERSONAL INFORMATION </b></p> </tr>
+        </table>
+    </div>
+
+    <table>
+        <tr>
+            <td>User Name</td>
+            <td><p th:text="${customer.getUsername()}"/> </td>
+
+            <td>password</td>
+            <td><input type="password" name="con_password"  required="true"   /> </td>
+        </tr>
+        <tr>
+            <td>First Name </td>
+            <td><input th:value="${customer.getFirstname()}" type="text" name="firstname"  /></td>
+
+            <td>Last Name</td>
+            <td><input th:value="${customer.getLastname()}" type="text" name="lastname"       /> </td>
+        </tr>
+        <tr>
+            <td>DOB</td>
+            <td><p th:text="${customer.getDOB()}"/> </td>
+        </tr>
+        <tr>
+            <td>
+                Phone
+            </td>
+            <td><input th:value="${customer.getPhone()}" type="text" name="phone"     /> </td>
+
+            <td>
+                Email
+            </td>
+            <td><input th:value="${customer.getEmail()}" type="text" name="email"     /> </td>
+        </tr>
+    </table>
+    <div align="center" style="vertical-align:bottom">
+        <table>
+            <tr><p class="sansserif"><b>PERSONAL ADDRESS INFORMATION </b></p> </tr>
+        </table>
+    </div>
+    <table>
+        <tr>
+            <td>Street Address</td>
+            <td><input th:value="${address.getStreetaddress()}" type="text" name="streetaddress"     /> </td>
+
+            <td>City</td>
+            <td><input th:value="${address.getCity()}" type="text" name="city"     /> </td>
+            <td>Postal Code</td>
+            <td><input th:value="${address.getPostalcode()}" type="text" name="postalcode"     /> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                District/State<select name="district" th:value="${address.getDistrict()}">
+                <option value="Dhaka">Dhaka</option>
+                <option value="Sylhet">Sylhet</option>
+                <option value="Comilla">Comilla</option>
+                <option value="Chittagong">Chittagong</option>
+                <option value="Rangpur">Rangpur</option>
+                <option value="Maymansigb">Maymansign</option>
+                <option value="Tangai">Tangail</option>
+                <option value="Sirajgonj">Sirajgonj</option>
+                <option value="Cox'sBazar">Cox'sBazar</option>
+                <option value="Vola">Vola</option>
+
+            </select>
+            </td>
+            <td></td>
+            <td>
+                Country<select name="country">
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="Nepal">Nepal</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Confirm"/>
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+<span th:if="${con_edit}==edited">
+    <script type="text/javascript">
+        alert("edited :)");
+    </script>
+</span>
+<span th:if="${pass}==wrong">
+    <script type="text/javascript">
+        alert("the password you gave is incorrect");
+    </script>
+</span>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function()
+        {
+        $("#notificationLink").click(function()
+        {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+        });
+
+        //Document Click
+        $(document).click(function()
+        {
+        $("#notificationContainer").hide();
+        });
+        //Popup Click
+        $("#notificationContainer").click(function()
+        {
+        e.stopPropagation();
+        });
+
+        });
+    </script>
+
+    <link  th:href="@{/ul.css}" rel="stylesheet" type="text/css" href="ul.css"/>
+    <link  th:href="@{/input.css}" rel="stylesheet" type="text/css" href="input.css"/>
+    <link  th:href="@{/button.css}" rel="stylesheet" type="text/css" href="button.css"/>
+    <link  th:href="@{/font.css}" rel="stylesheet" type="text/css" href="font.css"/>
+
+    <style>
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=password], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+        background-color: #45a049;
+        }
+
+        div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        }
+        div.middle {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 350px;
+        margin-left: 450px;
+
+        border: 1px ;
+        }
+    </style>
+
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<body>
+<div class="w3-container w3-black">
+<ul >
+
+    <li><a href="/demo/Home" class="w3-bar-item w3-button w3-green w3-xlarge"><i class="fa fa-home"></i></a></li>
+    <span th:if="${USERTYPE} == customer"  >
+        <li><a href="#" >Order</a></li>
+    </span>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="#" >Order</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <span th:if="${USERTYPE} == producer"  >
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addProduct">Add new arriivals</a>
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">All Category</a>
+        <div class="dropdown-content">
+            <a href="/demo/cloths">cloths</a>
+            <a href="/demo/craft">craft</a>
+            <a href="/demo/food">food</a>
+        </div>
+    </li>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="/demo/addCategory" >Add Category</a></li>
+    </span>
+    <li><a href="/demo/see_mycart" >my cart</a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-globe"></i></a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-envelope"></i></a></li>
+    <span th:if="${USERTYPE} != null">
+        <li class="right"><a href="/demo/logout">Log Out</a></li>
+    </span>
+    <span th:if="${USERTYPE} == null">
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Sign up</a>
+            <div class="dropdown-content">
+                <a href="/demo/signup">as customer</a>
+                <a href="/demo/signup_for_producer">as producer</a>
+            </div>
+        </li>
+    </span>
+    <li1><a href="/demo/myprofile" class="w3-bar-item w3-button w3-green w3-right  w3-xlarge"><span class="sansserif" th:text="${USERNAME}"/></a></li1>
+</ul>
+</div>
+<div class="middle">
+    <form method="post" action="/demo/login">
+    <table>
+        <tr>
+            <label><td>User Name</td></label>
+            <td><input type="text" name="username" required="true"     /> </td>
+        </tr>
+
+        <tr>
+           <label> <td>Password</td></label>
+            <td><input type="password" name="password"     /> </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input type="submit" value="Submit"/>
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+        </form>
+</div>
+</body>
+
+</html>

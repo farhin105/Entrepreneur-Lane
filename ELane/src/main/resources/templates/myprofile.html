@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:min-width="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript" >
+        $(document).ready(function()
+        {
+        $("#notificationLink").click(function()
+        {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+        });
+
+        //Document Click
+        $(document).click(function()
+        {
+        $("#notificationContainer").hide();
+        });
+        //Popup Click
+        $("#notificationContainer").click(function()
+        {
+        e.stopPropagation();
+        });
+
+        });
+    </script>
+
+    <link  th:href="@{/ul.css}" rel="stylesheet" type="text/css" href="ul.css"/>
+    <link  th:href="@{/input.css}" rel="stylesheet" type="text/css" href="input.css"/>
+    <link  th:href="@{/button.css}" rel="stylesheet" type="text/css" href="button.css"/>
+    <link  th:href="@{/table.css}" rel="stylesheet" type="text/css" href="table.css"/>
+    <link  th:href="@{/font.css}" rel="stylesheet" type="text/css" href="font.css"/>
+
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+<body>
+<div class="w3-container w3-black">
+<ul >
+
+    <li><a href="/demo/Home" class="w3-bar-item w3-button w3-green w3-xlarge"><i class="fa fa-home"></i></a></li>
+    <span th:if="${USERTYPE} == customer"  >
+        <li><a href="#" >Order</a></li>
+    </span>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="#" >Order</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <span th:if="${USERTYPE} == producer"  >
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Add Product</a>
+            <div class="dropdown-content">
+                <a href="/demo/addProduct">Add new arriivals</a>
+                <a href="/demo/addMyproduct">cloths</a>
+                <a href="/demo/addMyproduct">craft</a>
+                <a href="/demo/addMyproduct">food</a>
+            </div>
+        </li>
+    </span>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">All Category</a>
+        <div class="dropdown-content">
+            <a href="/demo/cloths">cloths</a>
+            <a href="/demo/craft">craft</a>
+            <a href="/demo/food">food</a>
+        </div>
+    </li>
+    <span th:if="${USERTYPE} == admin"  >
+        <li><a href="/demo/addCategory" >Add Category</a></li>
+    </span>
+
+    <li><a href="/demo/see_mycart" >my cart</a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-globe"></i></a></li>
+    <li><a href="#" class="w3-bar-item w3-button w3-black  w3-xlarge"><i class="fa fa-envelope"></i></a></li>
+    <span th:if="${USERTYPE} != null">
+        <li class="right"><a href="/demo/logout">Log Out</a></li>
+    </span>
+    <span th:if="${USERTYPE} == null">
+
+        <li  class="dropdown " >
+            <a href="javascript:void(0)" class="dropbtn">Sign up</a>
+            <div class="dropdown-content">
+                <a href="/demo/signup">as customer</a>
+                <a href="/demo/signup_for_producer">as producer</a>
+
+            </div>
+
+        </li>
+        <li class="right"><a href="/demo/login">Login</a></li>
+    </span>
+    <li1><a href="/demo/myprofile" class="w3-bar-item w3-button w3-green w3-right  w3-xlarge"><span class="sansserif" th:text="${USERNAME}"/></a></li1>
+    <li>
+        <div id="notification_count">3</div>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtnB">Dropdown</button>
+            <div id="myDropdown" class="dropdownB-content" >
+                <a href="#home">Home boy girl yo yoy o</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <form method="post" action="#">
+                    <input type="submit" value="paad kha"  name="productid" />
+                    <button  type="submit" value="Create"/>
+                </form>
+            </div>
+        </div>
+    </li>
+    <li id="notification_li">
+        <span id="notification_count">3</span>
+        <a href="#" id="notificationLink">Notifications</a>
+        <div id="notificationContainer">
+            <div id="notificationTitle">Notifications</div>
+            <div id="notificationsBody" class="notifications">
+                <span th:each="noti : ${noti}">
+                    <form method="post" action="/demo/tryit">
+                        <input type="submit" value="${noti.getUsername()}" name="blabla"/>
+                    </form>
+                    <a href="/demo/Home"><span th:text="${noti.getUsername()}"></span></a><br/>
+                </span>
+            </div>
+            <div id="notificationFooter"><a href="#">See All</a></div>
+        </div>
+    </li>
+
+</ul>
+</div>
+<span align="center" style="vertical-align:bottom">
+<div align="center" style="vertical-align:bottom">
+<table class="table1">
+<tr><p class="sansserif"><td><b>Personal Information</b></td><td></td></p></tr>
+<tr><p class="sansserif"><td><b>First Name:</b></td> <td><span th:text="${customer.getFirstname()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>Last Name:</b></td> <td><span th:text="${customer.getLastname()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>Date of Birth:</b></td> <td><span th:text="${customer.getDOB()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>Phone Number:</b></td> <td><span th:text="${customer.getPhone()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>Email:</b></td> <td><span th:text="${customer.getEmail()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>User Name:</b></td> <td><span th:text="${customer.getUsername()}"/></td></p></tr>
+<tr><p class="sansserif"><td><b>Street Address:</b></td> <td><span th:text="${address.getStreetaddress()}"/></td>
+<td><b>City:</b></td> <td><span th:text="${address.getCity()}"/></td>
+</p></tr>
+<tr><p class="sansserif"><td><b>District/State:</b></td> <td><span th:text="${address.getDistrict()}"/></td>
+    <td><b>Postal Code:</b></td> <td><span th:text="${address.getPostalcode()}"/></td>
+<td><b>Country:</b></td> <td><span th:text="${address.getCountry()}"/></td></p></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td>
+    <form method="post" action="/demo/edit_profile">
+        <input th:value="${customer.getId()}" type="hidden" name="customerid" />
+        <button class="button button1" id="edit" name="editButton" type="submit" value="Create"> <span th:text="Edit"/></button><br/>
+    </form></td>
+</tr>
+</table></div>
+</span>
+<div align="center" style="vertical-align:bottom">
+<div align="center" style="vertical-align:bottom">
+<table>
+    <tr>
+        <th>Voucher NO</th>
+        <th>Order Date</th>
+        <th>Product(s)</th>
+        <th>Amount</th>
+        <th>Order Total(BDT)</th>
+        <th>Status</th>
+    </tr>
+    <tr><span th:if="${payment} == 0">no order yet</span>
+        <span th:if="${payment} != 0">
+        <span  th:each="order : ${order}">
+            <tr>
+            <form method="post" action="/demo/voucher">
+            <input th:value="${order.getid()}" type="hidden" name="orderid" />
+            <td> <button class="button button2" id="${order.getid()}" name="button1" type="submit" value="Create"> <span th:text="${order.getid()} "/></button></td>
+            </form>
+            <td><span th:text="${order.getMydate()}" /></td>
+            <td><span  th:each="cart : ${cart}" th:if="${cart.orderid} ==${order.id}">
+                <span th:each="product : ${product}" th:if="${cart.getproductid()} ==${product.getProductid()}">
+                    <form method="post" action="/demo/product_details">
+                        <input th:value="${product.getProductid()}" type="hidden" name="productid" />
+                        <button class="button button2" id="${product.getProductname()}" name="button1" type="submit" value="Create"> <span th:text="${product.getProductname()} "/></button><br/>
+                    </form>
+                </span>
+            </span></td>
+            <td><div  th:each="cart : ${cart}" th:if="${cart.orderid} ==${order.id}">
+                <span th:text="${cart.amount}" /><br/>
+            </div></td>
+            <td><span th:text="${order.getTotalprice()}" /></td>
+                <td><div  th:each="pay : ${payment}" th:if="${order.getpaymentid()} ==${pay.getID()}">
+                    <span th:text="${pay.ShippingStatus()}" />
+                </div></td>
+            </tr>
+        </span>
+             </span>
+    </tr>
+
+</table>
+</div>
+</div>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+
+</script>
+</body>
+
+</html>

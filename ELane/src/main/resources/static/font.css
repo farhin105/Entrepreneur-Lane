@@ -1,0 +1,23 @@
+p.serif {
+        font-family: "Times New Roman", Times, serif;
+        }
+
+        p.sansserif {
+        font-family: Arial, Helvetica, sans-serif;
+        }
+        p.incorrect {
+        font-family: Arial, Helvetica, sans-serif;
+        size:70%;
+        color:red;
+        }
+
+        p.miniF{font-size: 70%; }
+
+        p.sansserifRed {
+                font-family: Arial, Helvetica, sans-serif;
+                color:red;
+                }
+                p.sansserifGreen {
+                font-family: Arial, Helvetica, sans-serif;
+                color:green;
+                }
